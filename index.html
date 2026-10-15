@@ -43,7 +43,71 @@ h1{font-size:28px;line-height:1.15;margin:8px 0 10px}.sub{color:var(--muted);lin
 <p style="text-align:center;color:var(--muted);font-size:13px">Safe • Verified • Christ-centered</p>
 </section>
 
+
 <section id="signup" class="screen">
+  <h1>Create your account</h1>
+  <p class="sub">Join Christians looking for a meaningful relationship.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="name">Full name</label>
+      <input id="name" type="text" placeholder="Your name"
+             autocomplete="name" required>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="you@example.com"
+             autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             placeholder="At least 8 characters"
+             autocomplete="new-password" required>
+      <button type="button" class="chip"
+              onclick="togglePassword('password',this)">
+        Show password
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="confirmPassword">Confirm password</label>
+      <input id="confirmPassword" type="password"
+             placeholder="Enter password again"
+             autocomplete="new-password" required>
+      <button type="button" class="chip"
+              onclick="togglePassword('confirmPassword',this)">
+        Show password
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="dob">Date of birth</label>
+      <input id="dob" type="date" required>
+    </div>
+
+    <div class="field">
+      <label for="country">Country</label>
+      <select id="country" required>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Kenya">Kenya</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="United States">United States</option>
+      </select>
+    </div>
+
+    <button class="btn primary" onclick="continueSignup()">
+      Continue
+    </button>
+    <p class="sub" style="font-size:12px">
+      You must be at least 18 years old to join Covenant.
+    </p>
+  </div>
+</section>
+ 
 <h1>Create your account</h1><p class="sub">Join Christians looking for a meaningful relationship.</p>
 <div class="card">
 <div class="field"><label>Full name</label><input id="name" placeholder="Your name"></div>
@@ -128,6 +192,57 @@ function show(id){
  if(id==='profile'&&document.getElementById('name').value) document.getElementById('profileName').textContent=document.getElementById('name').value;
  window.scrollTo(0,0);
 }
+function togglePassword(id, button) {
+  const input = document.getElementById(id);
+  const showing = input.type === 'password';
+
+  input.type = showing ? 'text' : 'password';
+  button.textContent = showing ? 'Hide password' : 'Show password';
+}
+
+function continueSignup() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const confirmPassword =
+    document.getElementById('confirmPassword').value;
+  const dob = document.getElementById('dob').value;
+
+  if (!name || !email || !password || !confirmPassword || !dob) {
+    alert('Please complete all registration fields.');
+    return;
+  }
+
+  if (password.length < 8) {
+    alert('Your password must contain at least 8 characters.');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Your passwords do not match.');
+    return;
+  }
+
+  const birthDate = new Date(dob + 'T00:00:00');
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  const birthdayNotReached =
+    today.getMonth() < birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() &&
+     today.getDate() < birthDate.getDate());
+
+  if (birthdayNotReached) age--;
+
+  if (isNaN(birthDate.getTime()) || age < 18 ||
+      birthDate > today) {
+    alert('You must be at least 18 years old to join Covenant.');
+    return;
+  }
+
+  show('faith');
+ }
+ 
 function match(){show('match')}
 function nextProfile(){alert('More compatible profiles will appear here in the full app.')}
 document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
