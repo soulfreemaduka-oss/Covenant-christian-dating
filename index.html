@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Covenant — Christian Dating</title>
+<style>
+:root{--navy:#092b63;--blue:#1555b8;--gold:#c99b32;--bg:#f5f7fb;--text:#172033;--muted:#697386;--white:#fff;--danger:#d9485f;--green:#15966b}
+*{box-sizing:border-box}body{margin:0;background:#e9edf4;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}
+.app{max-width:430px;margin:auto;min-height:100vh;background:var(--bg);position:relative;box-shadow:0 0 35px #0001}
+header{height:72px;background:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #e6e9ef;position:sticky;top:0;z-index:5}
+.brand{font-weight:800;color:var(--navy);font-size:21px}.brand span{color:var(--gold)}
+.icon{border:0;background:#eef3fb;border-radius:50%;width:38px;height:38px}
+main{padding:20px 18px 92px}.screen{display:none}.screen.active{display:block}
+h1{font-size:28px;line-height:1.15;margin:8px 0 10px}.sub{color:var(--muted);line-height:1.5}
+.card{background:white;border-radius:20px;padding:18px;box-shadow:0 5px 20px #18345b0b;margin:14px 0}
+.hero{background:linear-gradient(145deg,#092b63,#1555b8);color:white;border-radius:24px;padding:24px;margin-bottom:18px}
+.hero p{color:#e7efff}.btn{width:100%;border:0;border-radius:13px;padding:14px 16px;font-weight:750;font-size:15px;cursor:pointer}.primary{background:var(--navy);color:white}.gold{background:var(--gold);color:#172033}.outline{background:white;border:1px solid #ccd5e4;color:var(--navy)}
+.field{margin:13px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid #d7deea;border-radius:11px;background:#fff;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #d7deea;background:white;padding:9px 12px;border-radius:30px;font-size:13px;cursor:pointer}.chip.on{background:#e8f0ff;border-color:#6d95d9;color:var(--navy);font-weight:700}
+.profile-img{height:320px;border-radius:22px;overflow:hidden;position:relative;background:linear-gradient(135deg,#dce7f8,#f8efe2);display:flex;align-items:center;justify-content:center;font-size:92px}
+.profile-img small{position:absolute;left:14px;bottom:14px;background:#0009;color:white;padding:7px 11px;border-radius:20px;font-size:12px}
+.profile-head{display:flex;justify-content:space-between;align-items:flex-start;margin-top:14px}.verified{color:var(--green);font-size:12px;font-weight:800}
+.actions{display:flex;gap:12px;margin-top:14px}.actions button{flex:1;border-radius:14px;padding:14px;border:0;font-size:22px;cursor:pointer}.skip{background:#f0f2f6}.like{background:#e8f6f0;color:var(--green)}
+.nav{position:fixed;bottom:0;width:min(430px,100%);height:72px;background:#fff;border-top:1px solid #e3e7ee;display:flex;justify-content:space-around;z-index:10}.nav button{border:0;background:none;color:#7b8494;font-size:11px;font-weight:700}.nav button.active{color:var(--navy)}.nav b{display:block;font-size:20px;margin-bottom:3px}
+.list{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #edf0f5}.avatar{width:50px;height:50px;border-radius:50%;background:#dbe5f5;display:flex;align-items:center;justify-content:center;font-size:23px}
+.msg{padding:10px 13px;border-radius:15px;max-width:78%;margin:8px 0}.mine{background:var(--navy);color:white;margin-left:auto}.theirs{background:#e9edf4}
+.pill{display:inline-block;background:#edf3ff;color:var(--navy);padding:6px 9px;border-radius:15px;font-size:12px;margin:3px}
+.progress{height:7px;background:#e6e9ef;border-radius:9px;overflow:hidden}.progress i{display:block;height:100%;background:var(--gold)}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">✝ <span>Covenant</span></div><button class="icon" onclick="show('profile')">👤</button></header>
+
+<main>
+<section id="welcome" class="screen active">
+<div class="hero" style="margin-top:15vh">
+<div style="font-size:50px">♡✝</div><h1 style="color:white">Real people.<br>Godly intentions.</h1>
+<p>Meaningful Christian relationships built around faith, values and the hope of marriage.</p>
+<button class="btn gold" onclick="show('signup')">Get Started</button>
+</div>
+<p style="text-align:center;color:var(--muted);font-size:13px">Safe • Verified • Christ-centered</p>
+</section>
+
+<section id="signup" class="screen">
+<h1>Create your account</h1><p class="sub">Join Christians looking for a meaningful relationship.</p>
+<div class="card">
+<div class="field"><label>Full name</label><input id="name" placeholder="Your name"></div>
+<div class="field"><label>Email</label><input id="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label>Date of birth</label><input type="date"></div>
+<div class="field"><label>Country</label><select><option>Nigeria</option><option>Ghana</option><option>Kenya</option><option>United Kingdom</option><option>United States</option></select></div>
+<button class="btn primary" onclick="show('faith')">Continue</button>
+</div>
+</section>
+
+<section id="faith" class="screen">
+<h1>Tell us about your faith</h1><p class="sub">This helps Covenant make better matches.</p>
+<div class="card">
+<div class="field"><label>Christian tradition</label><div class="chips"><button class="chip on">Christian</button><button class="chip">Catholic</button><button class="chip">Orthodox</button><button class="chip">Other</button></div></div>
+<div class="field"><label>What are you looking for?</label><div class="chips"><button class="chip on">Marriage</button><button class="chip">Serious relationship</button></div></div>
+<div class="field"><label>Interests</label><div class="chips"><button class="chip">Bible study</button><button class="chip">Prayer</button><button class="chip">Worship</button><button class="chip">Music</button><button class="chip">Service</button><button class="chip">Business</button></div></div>
+<button class="btn primary" onclick="show('home')">Create my profile</button>
+</div>
+</section>
+
+<section id="home" class="screen">
+<div class="hero"><div style="font-size:13px;opacity:.8">GOOD AFTERNOON</div><h1 style="color:white">Find a relationship<br>with purpose.</h1><p>We match beyond appearances.</p></div>
+<div class="card"><b>Your compatibility profile</b><p class="sub">Complete more of your profile to improve your matches.</p><div class="progress"><i style="width:72%"></i></div><p style="font-size:12px;color:var(--muted)">72% complete</p></div>
+<h2>Suggested for you</h2>
+<div class="card" onclick="show('discover')"><div style="display:flex;gap:14px;align-items:center"><div class="avatar">👩🏾</div><div><b>Blessing, 28</b><div class="sub">Abuja • Verified</div><span class="pill">Faith 95%</span><span class="pill">Goals 100%</span></div></div></div>
+</section>
+
+<section id="discover" class="screen">
+<h1>Discover</h1><p class="sub">People who may share your faith and relationship goals.</p>
+<div class="card">
+<div class="profile-img">👩🏾‍🦱<small>● Online • Verified</small></div>
+<div class="profile-head"><div><h2 style="margin:0">Blessing, 28</h2><div class="sub">Abuja, Nigeria</div></div><b style="color:var(--green)">92% match</b></div>
+<p>Christian • Never married</p><p class="sub">“I love God, family, meaningful conversations and serving others. Looking for someone serious about building a godly home.”</p>
+<span class="pill">Prayer</span><span class="pill">Bible Study</span><span class="pill">Family</span><span class="pill">Service</span>
+<div class="actions"><button class="skip" onclick="nextProfile()">✕</button><button class="like" onclick="match()">♥</button></div>
+</div>
+</section>
+
+<section id="match" class="screen">
+<div class="hero" style="text-align:center;margin-top:10vh"><div style="font-size:65px">💙</div><h1 style="color:white">It's a match!</h1><p>You and Blessing both liked each other.</p><button class="btn gold" onclick="show('messages')">Send a message</button></div>
+</section>
+
+<section id="messages" class="screen">
+<h1>Messages</h1>
+<div class="card" onclick="show('chat')"><div class="list" style="border:0"><div class="avatar">👩🏾</div><div><b>Blessing</b><div class="sub">That’s a great question. Mine is Philippians 4:13.</div></div><span style="margin-left:auto">›</span></div></div>
+</section>
+
+<section id="chat" class="screen">
+<h1>Blessing <span class="verified">● Verified</span></h1>
+<div class="card" style="min-height:430px">
+<div class="msg theirs">Hi Emmanuel 😊 Thanks for liking my profile. How are you doing today?</div>
+<div class="msg mine">I'm doing great, thank you. What does a godly marriage mean to you?</div>
+<div class="msg theirs">For me, it means growing together in Christ, honesty, friendship and serving God together.</div>
+<div class="msg mine">I really appreciate that. What Bible passage has influenced you most?</div>
+<div class="msg theirs">Philippians 4:13 😊</div>
+</div>
+<div style="display:flex;gap:8px"><input class="field" style="flex:1;border:1px solid #ccd5e4;border-radius:12px;padding:12px" placeholder="Type a message"><button class="btn primary" style="width:52px">➤</button></div>
+</section>
+
+<section id="profile" class="screen">
+<h1>My Profile</h1>
+<div class="card" style="text-align:center"><div class="avatar" style="margin:auto;width:82px;height:82px;font-size:38px">👨🏾</div><h2 id="profileName">Your Name</h2><span class="pill">Christian</span><span class="pill">Marriage-minded</span><p class="sub">Complete your profile so better matches can understand who you are.</p><button class="btn outline">Edit profile</button></div>
+<div class="card"><b>Safety & privacy</b><div class="list">✓ Profile verification <span style="margin-left:auto;color:var(--green)">Secure</span></div><div class="list">🔒 Block & report controls <span style="margin-left:auto">›</span></div><div class="list">👁 Privacy settings <span style="margin-left:auto">›</span></div></div>
+<div class="card"><b>Covenant Premium</b><p class="sub">Unlimited likes, advanced filters, see who liked you and premium compatibility insights.</p><button class="btn gold">Explore Premium</button></div>
+</section>
+</main>
+
+<nav class="nav" id="nav" style="display:none">
+<button onclick="show('home')" data-s="home"><b>⌂</b>Home</button>
+<button onclick="show('discover')" data-s="discover"><b>♡</b>Discover</button>
+<button onclick="show('messages')" data-s="messages"><b>✉</b>Messages</button>
+<button onclick="show('profile')" data-s="profile"><b>♙</b>Profile</button>
+</nav>
+</div>
+<script>
+const screens=['welcome','signup','faith','home','discover','match','messages','chat','profile'];
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ const nav=document.getElementById('nav'); nav.style.display=['welcome','signup','faith'].includes(id)?'none':'flex';
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.s===id));
+ if(id==='profile'&&document.getElementById('name').value) document.getElementById('profileName').textContent=document.getElementById('name').value;
+ window.scrollTo(0,0);
+}
+function match(){show('match')}
+function nextProfile(){alert('More compatible profiles will appear here in the full app.')}
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+</script>
+</body>
+</html>
