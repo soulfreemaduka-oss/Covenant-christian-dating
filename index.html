@@ -108,14 +108,69 @@ h1{font-size:28px;line-height:1.15;margin:8px 0 10px}.sub{color:var(--muted);lin
   </div>
 </section>
  
-<h1>Create your account</h1><p class="sub">Join Christians looking for a meaningful relationship.</p>
-<div class="card">
-<div class="field"><label>Full name</label><input id="name" placeholder="Your name"></div>
-<div class="field"><label>Email</label><input id="email" type="email" placeholder="you@example.com"></div>
-<div class="field"><label>Date of birth</label><input type="date"></div>
-<div class="field"><label>Country</label><select><option>Nigeria</option><option>Ghana</option><option>Kenya</option><option>United Kingdom</option><option>United States</option></select></div>
-<button class="btn primary" onclick="show('faith')">Continue</button>
-</div>
+<section id="signup" class="screen">
+  <h1>Create your account</h1>
+  <p class="sub">Join Christians looking for a meaningful relationship.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="name">Full name</label>
+      <input id="name" type="text" placeholder="Your name"
+             autocomplete="name" required>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="you@example.com"
+             autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             placeholder="At least 8 characters"
+             autocomplete="new-password" required>
+      <button type="button" class="chip"
+              onclick="togglePassword('password',this)">
+        Show password
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="confirmPassword">Confirm password</label>
+      <input id="confirmPassword" type="password"
+             placeholder="Enter password again"
+             autocomplete="new-password" required>
+      <button type="button" class="chip"
+              onclick="togglePassword('confirmPassword',this)">
+        Show password
+      </button>
+    </div>
+
+    <div class="field">
+      <label for="dob">Date of birth</label>
+      <input id="dob" type="date" required>
+    </div>
+
+    <div class="field">
+      <label for="country">Country</label>
+      <select id="country" required>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Kenya">Kenya</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="United States">United States</option>
+      </select>
+    </div>
+
+    <button class="btn primary" onclick="continueSignup()">
+      Continue
+    </button>
+
+    <p class="sub" style="font-size:12px">
+      You must be at least 18 years old to join Covenant.
+    </p>
+  </div>
 </section>
 
 <section id="faith" class="screen">
